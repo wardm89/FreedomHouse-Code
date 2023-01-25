@@ -14,7 +14,7 @@ class MinistryPlatformClient(object):
     """ 
     This is the Ministry Platform API client class. Its purpose is to handle all requests to and from the Ministry Platform
     """
-    HISTORICAL_QUERY_MINUTES = 5
+    HISTORICAL_QUERY_MINUTES = 10
 
     def __init__(self):
         log.info("Initializing MP Client...")
