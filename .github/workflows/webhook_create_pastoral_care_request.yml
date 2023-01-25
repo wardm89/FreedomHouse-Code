@@ -8,7 +8,8 @@ name: Run create_pastoral_care_request.yml - Production Environment
 on:
   workflow_dispatch: 
   repository_dispatch: 
-    types: [on-demand-run]
+    types:
+      - on-demand-run
   # TODO: Re-enable schedule on go live
   # schedule:
   #   # * is a special character in YAML so you have to quote this string
