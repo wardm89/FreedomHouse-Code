@@ -35,4 +35,4 @@ Python script
    1. If it does then skip that one. (It's already been created)
    2. If no Form Response matches an existing care case then CREATE one
 
-[Pastoral Care Request Flow](Pastoral_Care_Request_Flow.png)
+![Pastoral Care Request Flow](Pastoral_Care_Request_Flow.png)
