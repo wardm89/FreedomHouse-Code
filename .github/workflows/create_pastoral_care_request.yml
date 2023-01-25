@@ -25,7 +25,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    environment: FreedomHouse Code ENV Vars
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.7
