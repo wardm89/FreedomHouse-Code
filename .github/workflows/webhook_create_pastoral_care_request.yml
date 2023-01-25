@@ -3,7 +3,7 @@
 
 # TLDR: This runs `python3 main.py` in production to create a care case aka Pastoral Care Request
 
-name: Run SCC Salesforce Import - Production Environment
+name: Run create_pastoral_care_request.yml - Production Environment
 
 on:
   workflow_dispatch: 
