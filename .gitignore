@@ -1,4 +1,4 @@
 
 .dccache
 .env
-pastoral-care/__pycache__/
+*__pycache__/

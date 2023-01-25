@@ -1,12 +1,13 @@
-from base64 import b64encode
 import os
 import sys
 import time
 import traceback
 import requests
 from dotenv import load_dotenv
-from utils import configure_logs, print_json, print_execution_time
-from mpClient import MinistryPlatformClient, CareCase
+from src.utils.utils import configure_logs, print_json, print_execution_time
+from src.ministryPlatformApi.mpClient import  MinistryPlatformClient
+from src.ministryPlatformApi.careCase import  CareCase
+
 
 load_dotenv()
 
