@@ -1,0 +1,71 @@
+# This is a basic workflow that is manually triggered
+
+name: Create Pastoral Care Request
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_call:
+    inputs:
+      ENV:
+        required: true
+        type: string
+    secrets:
+      MP_CLIENT_ID:
+        required: true
+      MP_CLIENT_SECRET:
+        required: true
+      
+jobs:
+  execute:
+
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+
+    strategy:
+      matrix:
+        node-version: [16.15.1]
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: scc-salesforce-import
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/upload-artifact@v3
+      with:
+        name: data-outputs
+        path: ./artifacts/ # or path/to/artifact
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+        cache-dependency-path: 'scc-salesforce-import/yarn.lock'
+    - name: Set Yarn Version Berry 3.2.4
+      run: yarn set version 3.2.4
+    - name: Install Yarn Dependencies
+      run: yarn
+    - name: Run test scripts
+      run: yarn test
+    - name: Create .env file
+      run: |
+        touch .env
+        echo ENV=${{ inputs.ENV }} >> .env
+        echo SCC_URL=${{ inputs.SCC_URL }} >> .env
+        echo SCC_URL=${{ inputs.SCC_URL }} >> .env
+        echo SCC_DOMAIN=${{ inputs.SCC_DOMAIN }} >> .env
+        echo SCC_AUDIENCE=${{ inputs.SCC_AUDIENCE }} >> .env
+        echo SCC_USERNAME=${{ inputs.SCC_USERNAME }} >> .env
+        echo SCC_SCOPE=${{ inputs.SCC_SCOPE }} >> .env
+        echo SALESFORCE_USERNAME=${{ inputs.SALESFORCE_USERNAME }} >> .env
+        echo SALESFORCE_LOGIN_URL=${{ inputs.SALESFORCE_LOGIN_URL }} >> .env
+        echo "SALESFORCE_AUTH_KEY=${{ secrets.SALESFORCE_AUTH_KEY }}" >> .env
+        echo "SALESFORCE_CONSUMER_KEY=${{ secrets.SALESFORCE_CONSUMER_KEY }}" >> .env
+        echo "SCC_CLIENT_ID=${{ secrets.SCC_CLIENT_ID }}" >> .env
+        echo "SCC_PASSWORD=${{ secrets.SCC_PASSWORD }}" >> .env
+        echo "SLACK_WEBHOOK=${{ secrets.SLACK_WEBHOOK }}" >> .env
+    - name: Run Script
+      run: yarn do-import
+        

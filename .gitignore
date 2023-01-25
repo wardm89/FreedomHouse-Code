@@ -2,3 +2,5 @@
 .dccache
 .env
 *__pycache__/
+
+.venv/

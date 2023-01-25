@@ -1,0 +1,23 @@
+# This cron job calls the create_pastoral_care_request script passing in production parameters.
+
+
+# TLDR: This runs `python3 main.py` in production to create a care case aka Pastoral Care Request
+
+name: Run SCC Salesforce Import - Production Environment
+
+on:
+  workflow_dispatch: 
+  # TODO: Re-enable schedule on go live
+  # schedule:
+  #   # * is a special character in YAML so you have to quote this string
+  #   # Run at 2:05am Eastern (Cron syntax is in UTC time)
+  #   - cron:  '5 6 * * *'
+
+jobs:
+  call-execute-flow:
+    uses: ./.github/workflows/create_pastoral_care_request.yml
+    with:
+      ENV: prod
+      MP_CLIENT_URL: https://freedomhouse.ministryplatform.com/ministryplatformapi/oauth/connect/token
+      MP_API_URL: https://freedomhouse.ministryplatform.com/ministryplatformapi
+    secrets: inherit
