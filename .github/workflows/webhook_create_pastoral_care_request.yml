@@ -7,7 +7,9 @@ name: Run create_pastoral_care_request.yml - Production Environment
 
 on:
   workflow_dispatch: 
-  repository_dispatch: 
+  http_event:
+    path: /pastoral_request_webhook
+    method: post
   # TODO: Re-enable schedule on go live
   # schedule:
   #   # * is a special character in YAML so you have to quote this string
