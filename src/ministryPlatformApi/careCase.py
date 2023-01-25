@@ -44,4 +44,6 @@ class CareCase():
         desc = desc + "\n" + f"What has been done? {pastoral_care_request['answers'][6]['Response']}"
         desc = desc + "\n"
         desc = desc + "\n" + f"Please share Contact Number and any other information to assist with follow up care. {pastoral_care_request['answers'][7]['Response']}"
+        desc = desc + "\n\n"
+        desc = desc + "\n" + f"Created via webhook from Form_Response_ID {pastoral_care_request['Form_Response_ID']}"
         return desc
