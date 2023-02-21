@@ -45,5 +45,8 @@ class CareCase():
         desc = desc + "\n"
         desc = desc + "\n" + f"Please share Contact Number and any other information to assist with follow up care. {pastoral_care_request['answers'][7]['Response']}"
         desc = desc + "\n\n"
-        desc = desc + "\n" + f"Created via webhook from Form_Response_ID {pastoral_care_request['Form_Response_ID']}"
+        if len(desc) >= 205:
+            desc = desc[:170]
+            desc = desc + "\n" + f"MAX LENGTH. Go to Form Response for more context."
+        desc = desc + "\n" + f"Created via Form_Response_ID {pastoral_care_request['Form_Response_ID']}"
         return desc
