@@ -6,7 +6,7 @@ class CareCase():
         self.contact_id = pastoral_care_request['Contact_ID'] # "People Record" 2 Is the Default Contact ID 
         self.start_date = pastoral_care_request['Response_Date']
         self.end_date = None
-        self.care_case_type_id = 13
+        self.care_case_type_id = CareCase.get_care_type_id(pastoral_care_request)
         self.location_id = pastoral_care_request['Location_ID']
         self.case_manager = 6 # "Administration User Record" 6 is ***Unassigned, Contact
         self.share_with_group_leaders = False
@@ -29,7 +29,26 @@ class CareCase():
 
     @staticmethod
     def get_title(pastoral_care_request):
-        return pastoral_care_request['answers'][0]['Response'] + ' ' + pastoral_care_request['answers'][3]['Response']
+        return pastoral_care_request['answers'][0]['Response'] + ' | ' + pastoral_care_request['answers'][3]['Response'].replace(' (please give details below)', '')
+    
+    @staticmethod
+    def get_care_type_id(pastoral_care_request):
+        care_case_types = {
+            "New Baby": 3,
+            "Crime Involved": 4,
+            "Serious Injury": 8,
+            "Death in the Family": 9,
+            "Serious Illness": 10,
+            "Admitted to Hospital": 11,
+            "Missing Person": 12,
+            "Other (please give details)": 13,
+            "Relocation": 14,
+            "Death of Pet": 15,
+            "Surgical Procedure": 16
+        }
+
+        circumstance = pastoral_care_request['answers'][3]['Response']
+        return care_case_types.get(circumstance, 13)
 
     @staticmethod
     def get_description(pastoral_care_request):
