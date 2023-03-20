@@ -29,7 +29,7 @@ class CareCase():
 
     @staticmethod
     def get_title(pastoral_care_request):
-        return pastoral_care_request['answers'][0]['Response'] + ' | ' + pastoral_care_request['answers'][3]['Response'].replace(' (please give details below)', '')
+        return pastoral_care_request['contact'][0]['Display_Name'] + ' | ' + pastoral_care_request['answers'][3]['Response'].replace(' (please give details below)', '')
     
     @staticmethod
     def get_care_type_id(pastoral_care_request):
@@ -52,7 +52,7 @@ class CareCase():
 
     @staticmethod
     def get_description(pastoral_care_request):
-        desc = f"Recipient: {pastoral_care_request['answers'][0]['Response']}"
+        desc = f"Recipient: {pastoral_care_request['contact'][0]['Contact_ID']} - {pastoral_care_request['contact'][0]['Display_Name']}"
         desc = desc + "\n" + f"Circumstance: {pastoral_care_request['answers'][3]['Response']}"
         desc = desc + "\n"
         desc = desc + "\n" + f"Campus: {pastoral_care_request['answers'][1]['Response']}"
