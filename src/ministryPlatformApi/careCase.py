@@ -52,14 +52,13 @@ class CareCase():
 
     @staticmethod
     def get_description(pastoral_care_request):
-        desc = f"Recipient: {pastoral_care_request['contact'][0]['Display_Name']}"
+        desc = f"Submitter: {pastoral_care_request['answers'][0]['Response']}"
         desc = desc + "\n" + f"Circumstance: {pastoral_care_request['answers'][3]['Response']}"
         desc = desc + "\n"
-        desc = desc + "\n" + f"Campus: {pastoral_care_request['answers'][1]['Response']}"
-        desc = desc + "\n" + f"Care recipient is a: {pastoral_care_request['answers'][2]['Response']}"
+        desc = desc + "\n" + f"{pastoral_care_request['answers'][1]['Response']} | {pastoral_care_request['answers'][2]['Response']}"
         desc = desc + "\n"
-        desc = desc + "\n" + f"Please describe the need. {pastoral_care_request['answers'][4]['Response']}"
-        desc = desc + "\n" + f"When and how did you become aware of the need? {pastoral_care_request['answers'][5]['Response']}"
+        desc = desc + "\n" + f"The need? {pastoral_care_request['answers'][4]['Response']}"
+        desc = desc + "\n" + f"When/how did you become aware? {pastoral_care_request['answers'][5]['Response']}"
         desc = desc + "\n" + f"What has been done? {pastoral_care_request['answers'][6]['Response']}"
         desc = desc + "\n"
         desc = desc + "\n" + f"Please share Contact Number and any other information to assist with follow up care. {pastoral_care_request['answers'][7]['Response']}"
