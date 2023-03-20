@@ -52,7 +52,7 @@ class CareCase():
 
     @staticmethod
     def get_description(pastoral_care_request):
-        desc = f"Recipient: {pastoral_care_request['contact'][0]['Contact_ID']} - {pastoral_care_request['contact'][0]['Display_Name']}"
+        desc = f"Recipient: {pastoral_care_request['contact'][0]['Display_Name']}"
         desc = desc + "\n" + f"Circumstance: {pastoral_care_request['answers'][3]['Response']}"
         desc = desc + "\n"
         desc = desc + "\n" + f"Campus: {pastoral_care_request['answers'][1]['Response']}"
