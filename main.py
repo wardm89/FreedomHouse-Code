@@ -48,7 +48,9 @@ def main():
             for care_request in pastoral_care_request_forms:
                 for case in care_cases:
                     if case['Title'] != CareCase.get_title(care_request) and case['Start_Date'] != care_request['Response_Date']:
-                        new_pastoral_requests.append(CareCase(care_request).get_care_case())
+                        case_to_add = CareCase(care_request).get_care_case()
+                        if case_to_add not in new_pastoral_requests:
+                            new_pastoral_requests.append(case_to_add)
 
         # print_json(new_pastoral_requests)
 

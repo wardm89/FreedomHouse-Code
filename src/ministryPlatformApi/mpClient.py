@@ -130,7 +130,7 @@ class MinistryPlatformClient(object):
             '$filter': f"Response_Date >= '{self.query_time}' AND Form_ID = 36"
         }
         answer_query_params = {
-            '$filter': "Form_Field_ID IN(800,801,802,803,804,805,806,807,808)"
+            '$filter': "Form_Field_ID IN(800,801,802,803,804,805,806,807,808) AND Form_Response_ID > 1400" # 1453 is the last one that worked
         }
 
         forms = self.get_endpoint('/tables/Form_Responses', form_query_params)
